@@ -26,6 +26,25 @@
  * ```
  */
 
-import './index.css';
+import { sourceMapsEnabled } from "process";
+import "./index.css";
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+console.log(
+  '👋 This message is being logged by "renderer.ts", included via Vite'
+);
+
+document
+  .querySelector("#toggle-dark-mode")
+  .addEventListener("click", async () => {
+    const darkMode = await window.darkMode.toggle();
+    document.querySelector("#theme-source").textContent = darkMode
+      ? "Dark"
+      : "Light";
+  });
+
+document
+  .querySelector("#reset-to-system")
+  .addEventListener("click", async () => {
+    await window.darkMode.system();
+    document.querySelector("#theme-source").textContent = "System";
+  });
