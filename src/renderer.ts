@@ -26,6 +26,18 @@
  * ```
  */
 
-import './index.css';
+import "./index.css";
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+console.log(
+  '👋 This message is being logged by "renderer.ts", included via Vite'
+);
+
+const NOTIFICATION_TITLE = "Title";
+const NOTIFICATION_BODY =
+  "Notification from the Renderer process. Click to log to console.";
+const CLICK_MESSAGE = "Notification clicked!";
+new window.Notification(NOTIFICATION_TITLE, {
+  body: NOTIFICATION_BODY,
+}).onclick = () => {
+  document.querySelector("#output").textContent = CLICK_MESSAGE;
+};
